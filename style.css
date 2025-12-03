@@ -1,0 +1,353 @@
+/* 1. Reset Básico e Variáveis - AGRESSIVO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Novas variáveis para cores mais agressivas */
+:root {
+    --cor-principal: #e74c3c;
+    --cor-fundo: #1a1a1a;
+    --cor-texto: #f0f0f0;
+    --cor-card: #2c2c2c;
+    --cor-destaque: #f39c12;
+    --cor-borda-detalhe: #c0392b;
+    --largura-maxima: 1200px;
+}
+
+body {
+    font-family: 'Arial Black', Gadget, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiMwMDAiLz48Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iMSIgZmlsbD0iIzMzMyIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjEiIGZpbGw9IiMzMzMiLz48L3N2Zz4=');
+    background-repeat: repeat;
+}
+
+/* Títulos com fonte mais impactante */
+h1, h2, h3 {
+    font-family: 'Impact', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+
+/* 2. Layout Principal */
+.container {
+    max-width: var(--largura-maxima);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main.container {
+    display: flex;
+    margin: auto;
+  
+}
+
+/* 3. Cabeçalho - AGRESSIVO (Sem Alterações) */
+header {
+    background-color: #0d0d0d;
+    padding: 18px 0;
+    border-bottom: 4px solid var(--cor-borda-detalhe);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--cor-principal);
+    font-size: 2.2em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* Navegação - AGRESSIVO (Sem Alterações) */
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 25px;
+}
+
+nav ul li a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s, text-shadow 0.3s;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+nav ul li a:hover {
+    color: var(--cor-destaque);
+    text-shadow: 0 0 8px var(--cor-destaque);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: var(--cor-destaque);
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+
+/* 4. Conteúdo Principal e Cards - AGRESSIVO */
+.conteudo-principal {
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* 🚀 NOVO LAYOUT HORIZONTAL DE CARD (FLASH CARD) */
+.anime-card {
+    background-color: var(--cor-card);
+    padding: 15px; /* Reduzido o padding total */
+    border-radius: 5px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease-in-out, border-color 0.3s;
+    border: 1px solid #444;
+
+    /* AQUI ESTÁ A MUDANÇA PRINCIPAL: DEIXA O CONTEÚDO HORIZONTAL */
+    display: flex; 
+    text-align: left; /* Alinha o texto à esquerda (não mais centralizado) */
+    align-items: flex-start; /* Alinha o topo */
+    gap: 15px; /* Espaço entre a imagem e o texto */
+}
+
+.anime-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--cor-principal);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9), 0 0 15px rgba(231, 76, 60, 0.7);
+}
+
+/* Estrutura da Imagem no Card Horizontal */
+.anime-card .card-imagem {
+    /* Largura fixa para a coluna da imagem */
+    flex: 0 0 100px; /* Não cresce, não encolhe, largura de 100px */
+    height: 150px; /* Altura fixa para formato flash card */
+    overflow: hidden; /* Garante que a imagem se encaixe */
+    border-radius: 3px;
+    border: 1px solid var(--cor-borda-detalhe);
+}
+
+.anime-card img {
+    /* A imagem preenche o container .card-imagem */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta a imagem para preencher o container sem distorcer */
+    display: block; 
+}
+
+/* Estrutura dos Detalhes (Texto) */
+.anime-card .card-detalhes {
+    /* Permite que o texto preencha o restante do espaço */
+    flex: 1; 
+    padding-top: 5px; /* Pequeno ajuste vertical */
+}
+
+/* Títulos, Gêneros e Botões (ajustados para layout horizontal) */
+.anime-card h3 {
+    font-size: 1.2em; /* Título um pouco menor */
+    margin-bottom: 5px;
+    color: var(--cor-principal);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.genero, .episodios {
+    font-size: 0.9em;
+    color: #cccccc;
+    margin-bottom: 5px;
+}
+
+.btn-ver-mais {
+    display: inline-block;
+    background-color: var(--cor-destaque);
+    color: var(--cor-fundo);
+    padding: 8px 15px; /* Botão menor para o card horizontal */
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+    border: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+/* 5. Barra Lateral - AGRESSIVO (Sem Alterações) */
+.barra-lateral {
+    flex: 1;
+}
+
+.widget {
+    background-color: var(--cor-card);
+    padding: 25px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
+}
+
+.widget h3 {
+    border-bottom: 3px solid var(--cor-borda-detalhe);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    color: var(--cor-principal);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.widget ul {
+    list-style: none;
+}
+
+.widget ul li a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    display: block;
+    padding: 8px 0;
+    transition: color 0.3s, padding-left 0.3s;
+    border-bottom: 1px dashed #444;
+}
+
+.widget ul li:last-child a {
+    border-bottom: none;
+}
+
+.widget ul li a:hover {
+    color: var(--cor-destaque);
+    padding-left: 10px;
+    text-shadow: 0 0 5px var(--cor-destaque);
+}
+
+.widget input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--cor-borda-detalhe);
+    border-radius: 4px;
+    background-color: #1a1a1a;
+    color: var(--cor-texto);
+    font-size: 1.1em;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.widget button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--cor-principal);
+    color: var(--cor-fundo);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.widget button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* 6. Rodapé - AGRESSIVO (Sem Alterações) */
+footer {
+    background-color: #0d0d0d;
+    padding: 25px 0;
+    text-align: center;
+    border-top: 4px solid var(--cor-borda-detalhe);
+    color: #999;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Media Query para Responsividade (Sem Alterações) */
+@media (max-width: 768px) {
+    main.container {
+        flex-direction: column;
+    }
+    .conteudo-principal, .barra-lateral {
+        flex: auto;
+        width: 100%;
+    }
+    .logo {
+        font-size: 1.8em;
+    }
+    nav ul li {
+        margin-left: 15px;
+    }
+    
+    /* Adaptação: Volta para vertical no mobile para economizar espaço */
+    .anime-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .anime-card .card-imagem {
+        flex: auto;
+        width: 80%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+}
+/* ----------------------------------------------------------------- */
+/* 7. ESTILOS PARA TEMA CLARO (LIGHT MODE) */
+/* ----------------------------------------------------------------- */
+.light-mode {
+    --cor-principal: #3498db;     /* Azul primário */
+    --cor-fundo: #ecf0f1;         /* Fundo Cinza Claro */
+    --cor-texto: #333333;         /* Texto Escuro */
+    --cor-card: #ffffff;          /* Card Branco */
+    --cor-destaque: #e67e22;      /* Laranja para destaque */
+    --cor-borda-detalhe: #2980b9; /* Azul mais escuro */
+}
+
+/* Aplica as novas cores ao corpo e cabeçalho */
+.light-mode body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    background-image: none; /* Remove a textura */
+}
+
+.light-mode header {
+    background-color: var(--cor-card);
+    border-bottom-color: var(--cor-borda-detalhe);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .logo,
+.light-mode .widget h3 {
+    color: var(--cor-principal);
+}
+
+.light-mode .anime-card,
+.light-mode .widget,
+.light-mode .artigo-destaque {
+    background-color: var(--cor-card);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ddd;
+}
+
+.light-mode footer {
+    background-color: #e0e0e0;
+    color: #666;
+    border-top-color: var(--cor-borda-detalhe);
+}
